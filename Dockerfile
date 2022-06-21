@@ -18,6 +18,7 @@ RUN apt-get update \
 CMD ["sh", "./papermc.sh"]
 
 # Container setup
+USER 1000:100
 EXPOSE 25565/tcp
 EXPOSE 25565/udp
 VOLUME /papermc
