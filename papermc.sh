@@ -9,15 +9,20 @@ if [ ${MC_VERSION} = latest ]
 then
   # Get the latest MC version
   MC_VERSION=$(wget -qO - $URL | jq -r '.versions[-1]') # "-r" is needed because the output has quotes otherwise
+  echo "Latest Minecraft version: $MC_VERSION"
 fi
 URL=${URL}/versions/${MC_VERSION}
 if [ ${PAPER_BUILD} = latest ]
 then
   # Get the latest build
   PAPER_BUILD=$(wget -qO - $URL | jq '.builds[-1]')
+  echo "Latest Paper build: $PAPER_BUILD"
 fi
 JAR_NAME=paper-${MC_VERSION}-${PAPER_BUILD}.jar
 URL=${URL}/builds/${PAPER_BUILD}/downloads/${JAR_NAME}
+
+echo "Jar filename: $JAR_NAME"
+echo "URL to download: $URL"
 
 # Update if necessary
 if [ ! -e ${JAR_NAME} ]
